@@ -1,5 +1,5 @@
 """Script para deletar arquivos de pasta especifica a cada N dias"""
-import os, time, sys
+import os, time
 from pathlib import Path
 
 MAIN_DIR = Path(__file__).parent #Define diretório local do aplicativo
