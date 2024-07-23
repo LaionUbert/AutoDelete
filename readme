@@ -11,34 +11,6 @@ Este repositório contém um script em Python que automatiza a exclusão de arqu
 - **Relatórios Detalhados:** Gera relatórios dos arquivos excluídos para auditoria e verificação.
 - **Segurança:** Inclui verificações para garantir que apenas arquivos no diretório especificado sejam excluídos.
 
-## Requisitos
-
-- Python 3.6 ou superior
-- Bibliotecas Python: os, time
-
-## Como Usar
-
-1. **Clone o Repositório:**
-    ```bash
-    git clone https://github.com/usuario/nome-do-repositorio.git
-    ```
-2. **Instale as Dependências:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. **Configure o Script:**
-   - Abra o arquivo `config.py` e defina o diretório alvo e o número de dias.
-4. **Execute o Script:**
-    ```bash
-    python delete_files.py
-    ```
-5. **Agende a Execução Automática (Opcional):**
-   - Configure uma tarefa agendada no seu sistema operacional para rodar o script periodicamente.
-
-## Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
-
 ## Licença
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo `LICENSE` para mais detalhes.
