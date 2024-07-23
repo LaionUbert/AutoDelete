@@ -8,8 +8,7 @@ Este repositório contém um script em Python que automatiza a exclusão de arqu
 
 - **Configuração Personalizável:** Permite definir o número de dias após os quais os arquivos serão excluídos.
 - **Execução Automática:** Pode ser agendado para rodar periodicamente usando o Task Scheduler do Windows.
-- **Relatórios Detalhados:** Gera relatórios dos arquivos excluídos para auditoria e verificação.
-- **Segurança:** Inclui verificações para garantir que apenas arquivos no diretório especificado sejam excluídos.
+- **Registro em Log:** Gera registros dos arquivos excluídos para auditoria e verificação.
 
 ## Licença
 
