@@ -1,36 +1,33 @@
-"""Script para deletar arquivos de pasta especifica a cada N dias"""
-import os, time
-from pathlib import Path
+#Script para deletar arquivos de pasta especifica a cada N dias
 
-MAIN_DIR = Path(__file__).parent #Define diretório local do aplicativo
-TIME_FILE = MAIN_DIR / 'config/time.txt' #Aponta o arquivo com a informação
-PATH_FILE = MAIN_DIR / 'config/path.txt' #Aponta o arquivo com o diretório a ser manipulado
+import os, datetime, shutil
+from datetime import datetime, timedelta
 
+config_path = r"C:\Users\laion.santos\Desktop\testealvo"
+config_time = 1
 
-configPath = open(PATH_FILE)
-configTime = open(TIME_FILE)
+#contentPath = config_path.read()
+setOSPath = os.chdir(os.path.join(os.getcwd(), config_path))
 
-contentPath = configPath.read()
-path = os.chdir(os.path.join(os.getcwd(), contentPath))
+#contentTime = int(config_time.read())
+timeNow = datetime.now()
+timeDelete = timeNow - timedelta(days = config_time)
 
-contentTime = int(configTime.read())
-timeNow = time.time()
-timeDelete = timeNow - (contentTime*86400)
+print(f"Diretório onde serão deletados os arquivos  :  {config_path}")
+print(f"Serão deletados os arquivos anteriores a    :  {timeDelete}")
 
-print(f"O Diretório é: {contentPath}")
-print(f"O Tempo de Deleção é: {timeNow}")
-print(f"O Novo tempo é: {timeDelete}")
+def listarArquivos(path = config_path):
+    with os.scandir(path) as entries:
+        for entry in entries:
+            if entry.is_file():
+                print(f"Arquivo a ser deletado:   {entry.path}")
+            elif entry.is_dir():
+                listarArquivos(entry.path)
 
-listaDeArquivos = os.listdir(path)
+def deletarArquivos():
+    listarArquivos()
+    shutil.rmtree(config_path, ignore_errors=True)
+    print('Arquivos deletados com sucesso')
 
-for i in listaDeArquivos:
-    localArquivo = os.path.join(os.getcwd(), i)
-    tempoArquivo = os.stat(localArquivo).st_mtime
-    
-    if (timeNow > timeDelete):
-        print(f'Deleting: {i}')
-        #os.remove(configPath.read())
-
-
-configPath.close
-configTime.close
+if timeNow > timeDelete:
+    deletarArquivos()
