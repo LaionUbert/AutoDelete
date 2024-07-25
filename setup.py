@@ -1,22 +1,29 @@
-#Interface gráfica para configuração dos parâmetros do deleteScript.py com a biblioteca TKinter; WIP.
+#Header (WIP)
+'''
+--- Interface grafica para configuração dos parametros do deleteScript.py com a biblioteca TKinter.
+
+'''
+
+
+#Importacao dos modulos
 import configparser
 from tkinter import *
 from tkinter import ttk
 
 
-#head
+#Head
 window = Tk()
 window.title("hello world")
 window.geometry('500x500')
 window.tk.call('tk','scaling',1)
 
+#inicializacao do configparser
 config = configparser.ConfigParser()
 config.read("config.ini")
 
 
-#funções
-
-#validar dados (terminar depois)
+#funcoes
+##validar dados (WIP)
 '''def isInt(n):
     try:
         float(n)
@@ -28,7 +35,7 @@ config.read("config.ini")
 '''def isStr():'''
     
 
-#pegar valores do input
+##pegar valores do input
 def getValue():
     pathInput = str(configPathEntry.get())
     timeInput = str(configTimeEntry.get())
@@ -43,14 +50,14 @@ def getValue():
     print(pathInput)
     
 
-    #validar input (terminar depois)
+    #validar input (WIP)
     '''if inputConfigPath == isInt(True):
         print('true')
     else:
         print("false")'''
 
-
-#labels
+#Elementos da janela
+##labels
 h1Label = Label(window, text="Setup AutoDelete", font=('Arial', 20))
 configPathLabel = Label(
     window, text="Informe o diretório a ser deletado: ", font=('Arial', 16))
@@ -58,16 +65,16 @@ configTimeLabel = Label(
     window, text="Informe a idade máxima dos arquivos (em dias): ",font=('Arial', 16))
 
 
-#buttons
+##buttons
 saveInputButton = Button(window, text="Salvar", font=('Arial', 20), command=getValue)
 
 
-#entries
+##entries
 configPathEntry = Entry(window)
 configTimeEntry = Entry(window)
 
 
-#grid positioning
+##formatacao do grid
 h1Label.grid(column=0, row=0, columnspan=2)
 
 configPathLabel.grid(row=1, column=0)
@@ -79,5 +86,5 @@ configTimeEntry.grid(row=2, column=1)
 saveInputButton.grid(row=3, column=0, columnspan=2)
 
 
-#loop
+#loop da janela
 window.mainloop()
