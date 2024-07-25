@@ -1,10 +1,14 @@
 #Script para deletar arquivos de pasta especifica a cada N dias
 
 import os, datetime, shutil
+import configparser
 from datetime import datetime, timedelta
 
-config_path = r"C:\Users\laion.santos\Desktop\testealvo"
-config_time = 1
+config = configparser.ConfigParser()
+config.read("config.ini")
+
+config_path = str(config.get('Default','config_path'))
+config_time = int(config.get('Default','config_time'))
 
 #contentPath = config_path.read()
 setOSPath = os.chdir(os.path.join(os.getcwd(), config_path))
@@ -15,6 +19,7 @@ timeDelete = timeNow - timedelta(days = config_time)
 
 print(f"Diretório onde serão deletados os arquivos  :  {config_path}")
 print(f"Serão deletados os arquivos anteriores a    :  {timeDelete}")
+
 
 def listarArquivos(path = config_path):
     with os.scandir(path) as entries:
