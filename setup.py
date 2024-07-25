@@ -6,7 +6,7 @@
 
 
 #Importacao dos modulos
-import configparser
+import configparser, os
 from tkinter import *
 from tkinter import ttk
 
@@ -23,38 +23,31 @@ config.read("config.ini")
 
 
 #Funcoes
-##validar dados (WIP)
-'''def isInt(n):
-    try:
-        float(n)
-    except:
-        return False
-    else:
-        return float(n).is_integer()'''
-
-'''def isStr():'''
-    
-
 ##pegar valores do input
 def getValue():
     pathInput = str(configPathEntry.get())
     timeInput = str(configTimeEntry.get())
 
-    config.set('Default', 'config_time', timeInput)
-    config.set('Default','config_path', pathInput)
-    
-    with open ('config.ini', 'w') as configfile:
-        config.write(configfile) 
-    
-    print(timeInput)
-    print(pathInput)
-    
+    #validar input da variavel 'timeInput' (se/senao for numerico)
+    timeInputCheck = timeInput.isnumeric()
+    pathInputCheck = os.path.exists(pathInput)
+    if timeInputCheck == True: #Se verdadeiro, irá definir o input na variavel 'timeInput'
+        config.set('Default', 'config_time', timeInput)
+        print(config.get('Default','config_time'))
+    else: #Se falso, irá retornar mensagem de erro
+        print("tipo de dado incorreto, favor usar apenas números positivos") 
 
-    #validar input (WIP)
-    '''if inputConfigPath == isInt(True):
-        print('true')
-    else:
-        print("false")'''
+    #validar input da variavel 'pathInput' (se/senao existir)
+    if pathInputCheck == True: #Se verdadeiro, irá definir o input na variavel 'pathInput'
+        config.set('Default', 'config_path', pathInput)
+        print(config.get('Default','config_path'))
+    else: #Se falso, irá retornar mensagem de erro
+        print("caminho nao existe, favor verificar se a pasta está dispponível e com permissão de Leitura/Escrita pelo usuário")
+        
+    #gravar valores das variaveis no arquivo 'config.ini'
+    with open ('config.ini', 'w') as configfile:
+        config.write(configfile)  
+
 
 #Elementos da janela
 ##labels
