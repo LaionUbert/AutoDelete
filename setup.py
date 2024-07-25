@@ -17,12 +17,12 @@ window.title("hello world")
 window.geometry('500x500')
 window.tk.call('tk','scaling',1)
 
-#inicializacao do configparser
+#Inicializacao do configparser
 config = configparser.ConfigParser()
 config.read("config.ini")
 
 
-#funcoes
+#Funcoes
 ##validar dados (WIP)
 '''def isInt(n):
     try:
@@ -86,5 +86,5 @@ configTimeEntry.grid(row=2, column=1)
 saveInputButton.grid(row=3, column=0, columnspan=2)
 
 
-#loop da janela
+#Loop da janela
 window.mainloop()

@@ -10,7 +10,7 @@ import configparser
 from datetime import datetime, timedelta
 
 
-#inicializacao do configparser
+#Inicializacao do configparser
 config = configparser.ConfigParser()
 config.read("config.ini")
 
@@ -28,7 +28,6 @@ print(f"Serão deletados os arquivos anteriores a    :  {timeDelete}")
 
 
 #Funcoes
-
 ##funcao para listar arquivos a serem deletados
 def listarArquivos(path = config_path):
     with os.scandir(path) as entries:
