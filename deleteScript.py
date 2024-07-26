@@ -1,8 +1,9 @@
-#Header (WIP)
+#Header
 '''
---- Script para deletar arquivos de pasta especifica a cada N dias
+--- Autor: Laion Ubert Vieira Santos
+--- Descrição: Script para deletar arquivos de pasta especifica a cada N dias
+'''
 
-'''
 
 #Importacao de modulos e libs
 import os, datetime, shutil
@@ -15,16 +16,20 @@ config = configparser.ConfigParser()
 config.read("config.ini")
 
 
+#Modificacao das configuracoes
+##getters dos valores de input para as variaveis de mudanca
 config_path = str(config.get('Default','config_path'))
 config_time = int(config.get('Default','config_time'))
 
+##alterar diretorio de controle para execucao das funcoes
 setOSPath = os.chdir(os.path.join(os.getcwd(), config_path))
 
-timeNow = datetime.now()
-timeDelete = timeNow - timedelta(days = config_time)
+##alterar idade maxima dos arquivos
+timeDelete = datetime.now() - timedelta(days = config_time)
 
-print(f"Diretório onde serão deletados os arquivos  :  {config_path}")
-print(f"Serão deletados os arquivos anteriores a    :  {timeDelete}")
+##impressao dos valores atualizados das variaveis 
+print(f"Diretório onde serão deletados os arquivos  :  {config_path}") #Imprime no terminal o caminho do diretorio
+print(f"Serão deletados os arquivos anteriores a    :  {timeDelete}") #Imprime no terminal a data limite para deletar arquivos
 
 
 #Funcoes
@@ -43,5 +48,5 @@ def deletarArquivos():
     shutil.rmtree(config_path, ignore_errors=True)
     print('Arquivos deletados com sucesso')
 
-if timeNow > timeDelete:
+if datetime.now() > timeDelete:
     deletarArquivos()
