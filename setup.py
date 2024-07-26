@@ -14,7 +14,8 @@ from tkinter import ttk
 #Head
 window = Tk()
 window.title("hello world")
-window.geometry('700x300')
+window.geometry('475x270')
+window.resizable(0,0)
 window.tk.call('tk','scaling',1)
 
 #Inicializacao do configparser
@@ -78,21 +79,21 @@ clearTimeButton = Button(frame, text="Limpar", font=('Arial', 12), command=clear
 saveInputButton = Button(frame, text="Salvar", font=('Arial', 18), command=getValue)
 
 ##entries
-configPathEntry = Entry(frame)
-configTimeEntry = Entry(frame)
+configPathEntry = Entry(frame, width=50, font=('Arial', 12))
+configTimeEntry = Entry(frame, width=10, font=('Arial', 12))
 
 ##formatacao do grid
 h1Label.grid(column=0, row=0, columnspan=3, pady=20)
 
-configPathLabel.grid(row=1, column=0, pady=5)
+configPathLabel.grid(row=1, column=0)
 configPathEntry.grid(row=2, column=0)
 clearPathButton.grid(row=2, column=1, pady=5, padx=10)
 
-configTimeLabel.grid(row=3, column=0, pady=5)
+configTimeLabel.grid(row=3, column=0)
 configTimeEntry.grid(row=4, column=0)
-clearTimeButton.grid(row=4, column=1, pady=5, padx=10)
+clearTimeButton.grid(row=4, column=1, pady=10, padx=10)
 
-saveInputButton.grid(row=5, column=0, pady=10, columnspan=3, padx=10)
+saveInputButton.grid(row=5, column=0, pady=10, columnspan=3, padx=5)
 
 frame.pack()
 
