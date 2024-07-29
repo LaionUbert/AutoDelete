@@ -1,7 +1,7 @@
 #Header
 '''
 --- Autor: Laion Ubert Vieira Santos
---- Descrição: Interface grafica para configuração dos parametros do deleteScript.py com a biblioteca TKinter.
+--- Descrição: Interface grafica para configuração dos parametros do fileScript.py com a biblioteca TKinter.
 '''
 
 
@@ -12,11 +12,14 @@ from tkinter import ttk
 
 
 #Head
-window = Tk()
-window.title("hello world")
-window.geometry('475x270')
-window.resizable(0,0)
-window.tk.call('tk','scaling',1)
+root = Tk()
+root.title("AutoDelete")
+root.geometry('475x270')
+root.resizable(0,0)
+root.tk.call('tk','scaling',1)
+
+
+root.iconbitmap('media/Logo.ico')
 
 #Inicializacao do configparser
 config = configparser.ConfigParser()
@@ -34,14 +37,14 @@ def getValue():
         config.set('Default', 'config_path', pathInput)
         print(config.get('Default','config_path'))
     else: #Se falso, irá retornar mensagem de erro
-        print("caminho nao existe, favor verificar se a pasta está dispponível e com permissão de Leitura/Escrita pelo usuário")
+        print("Diretório de destino não acessível. Favor verificar se o caminho existe e está disponível para Leitura/Escrita")
  
-     #validar input da variavel 'timeInput' (se/senao for numerico)
+    #validar input da variavel 'timeInput' (se/senao for numerico)
     if (timeInput.isnumeric()) and (int(timeInput) >= 0): #Se verdadeiro, irá definir o input na variavel 'timeInput'
         config.set('Default', 'config_time', timeInput)
         print(config.get('Default','config_time'))
     else: #Se falso, irá retornar mensagem de erro
-        print("tipo de dado incorreto, favor usar apenas números inteiros positivos") 
+        print("Tipo de dado incorreto. Favor usar apenas números inteiros positivos") 
         
     #gravar valores das variaveis no arquivo 'config.ini'
     with open ('config.ini', 'w') as configfile:
@@ -63,7 +66,7 @@ def clearTimeValue():  #Limpar valor do campo 'config_time'
 
 
 #Elementos da janela
-frame = Frame(window)
+frame = Frame(root)
 
 ##labels
 h1Label = Label(
@@ -85,18 +88,21 @@ configTimeEntry = Entry(frame, width=10, font=('Arial', 12))
 ##formatacao do grid
 h1Label.grid(column=0, row=0, columnspan=3, pady=20)
 
+###formatacao dos campos de edicao de caminho
 configPathLabel.grid(row=1, column=0)
 configPathEntry.grid(row=2, column=0)
 clearPathButton.grid(row=2, column=1, pady=5, padx=10)
 
+###formatacao dos campos de edicao de tempo
 configTimeLabel.grid(row=3, column=0)
 configTimeEntry.grid(row=4, column=0)
 clearTimeButton.grid(row=4, column=1, pady=10, padx=10)
 
-saveInputButton.grid(row=5, column=0, pady=10, columnspan=3, padx=5)
+###formatacao do botao de salvar
+saveInputButton.grid(row=5, column=0, pady=10, columnspan=1, padx=5)
 
 frame.pack()
 
 
 #Loop da janela
-window.mainloop()
+root.mainloop()
