@@ -1,2 +1,6 @@
-buildtest
+misc
 .idea
+venv
+build
+dist
+*.spec

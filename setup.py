@@ -70,7 +70,7 @@ frame = Frame(root)
 
 ##labels
 h1Label = Label(
-    frame, text="Setup AutoDelete", font=('Arial', 18,'bold'))
+    frame, text="Setup ", font=('Arial', 18,'bold'))
 configPathLabel = Label(
     frame, text="Informe o diretório a ser deletado: ", font=('Arial', 12))
 configTimeLabel = Label(
