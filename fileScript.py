@@ -6,7 +6,7 @@
 
 
 #Importacao de modulos e libs
-import os, datetime, shutil, time
+import os, datetime, shutil, pathlib
 import configparser
 from datetime import datetime, timedelta
 
@@ -32,23 +32,22 @@ print(f"Serão deletados os arquivos anteriores a    :  {timeDelete}") #Imprime 
 
 #Funcoes
 ##funcao para listar arquivos a serem deletados
-'''def listarArquivos(path = config_path):
+def listarArquivos(path = os.chdir(os.path.join(os.getcwd(), config_path_copy))):
     with os.scandir(path) as entries:
-        for entry in entries:
-            if entry.is_file():
-                print(f"Arquivo selecionado:   {entry.path}")
-            elif entry.is_dir():
-                listarArquivos(entry.path)
-'''
-for (root, dirs, file) in os.walk(config_path):
-    print(file)
-#def listarArquivos(path = config_path):
-
+        try:
+            for entry in entries:
+                if entry.is_file():
+                    print(f"Arquivo selecionado:   {entry.path}")
+                elif entry.is_dir():
+                    listarArquivos(entry.path)
+        except PermissionError:
+            print(f'Arquivo com acesso negado: {path}')
 
 ##funcao para deletar arquivos
 def deletarArquivos():
     if os.path.exists(config_path) == True:
-        #os.chdir(os.path.join(os.getcwd(), config_path))
+        os.chdir(os.path.join(os.getcwd(), config_path))
+        print('Listando arquivos para deletar:')
         listarArquivos()
         shutil.rmtree(config_path, ignore_errors=True)
         print('Arquivos deletados com sucesso')
@@ -68,16 +67,10 @@ def copiarArquivos():
         print("Diretório de origem não acessível. Favor verificar se o caminho existe e está disponível para Leitura/Escrita")
 
 
+#listarArquivos()
 #Execucao das funcoes com base na diferenca de tempo
 if datetime.now() > timeDelete:
     if config.getboolean('Tweaks','deletarArquivosOption') == True:
-        print('deletarArquivosOption True')
-        #deletarArquivos()
-    else:
-        print('deletarArquivosOption False')
-
+        deletarArquivos()
 if config.getboolean('Tweaks','copiarArquivosOption') == True:
-    print('copiarArquivosOption True')
-    #copiarArquivos()
-else:
-    print('copiarArquivosOption False')
+    copiarArquivos()
