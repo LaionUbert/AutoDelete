@@ -7,6 +7,7 @@
 
 #Importacao dos modulos
 import configparser, os
+import fileScript
 from tkinter import *
 from tkinter import ttk
 
@@ -14,12 +15,10 @@ from tkinter import ttk
 #Head
 root = Tk()
 root.title("AutoDelete")
-root.geometry('475x270')
+root.geometry('475x375')
 root.resizable(0,0)
 root.tk.call('tk','scaling',1)
-
-
-root.iconbitmap('media/Logo.ico')
+#***root.iconbitmap('media/Logo.ico')
 
 #Inicializacao do configparser
 config = configparser.ConfigParser()
@@ -64,6 +63,14 @@ def clearTimeValue():  #Limpar valor do campo 'config_time'
     with open ('config.ini', 'w') as configfile:
         config.write(configfile)  
 
+def runManualDelete():
+    print('Deletando Manualmente')
+    fileScript.deletarArquivos()
+    
+    
+def runManualCopy():
+    print('Copiando Manualmente')
+    fileScript.copiarArquivos()
 
 #Elementos da janela
 frame = Frame(root)
@@ -80,26 +87,32 @@ configTimeLabel = Label(
 clearPathButton = Button(frame, text="Limpar", font=('Arial', 12), command=clearPathValue)
 clearTimeButton = Button(frame, text="Limpar", font=('Arial', 12), command=clearTimeValue)
 saveInputButton = Button(frame, text="Salvar", font=('Arial', 18), command=getValue)
+runDeleteInputButton = Button(frame, text="Deletar Manualmente", font=('Arial', 18), command=runManualDelete)
+runCopyInputButton = Button(frame, text="Copiar Manualmente", font=('Arial', 18), command=runManualCopy)
+
 
 ##entries
-configPathEntry = Entry(frame, width=50, font=('Arial', 12))
+configPathEntry = Entry(frame, width=60, font=('Arial', 12))
 configTimeEntry = Entry(frame, width=10, font=('Arial', 12))
 
 ##formatacao do grid
-h1Label.grid(column=0, row=0, columnspan=3, pady=20)
+h1Label.grid(column=0, row=0, columnspan=4, pady=20)
 
 ###formatacao dos campos de edicao de caminho
-configPathLabel.grid(row=1, column=0)
-configPathEntry.grid(row=2, column=0)
-clearPathButton.grid(row=2, column=1, pady=5, padx=10)
+configPathLabel.grid(sticky=W, row=1, column=0, columnspan=4)
+clearPathButton.grid(row=1, column=3, pady=5, padx=10)
+configPathEntry.grid(sticky=W, row=2, column=0, columnspan=4)
 
 ###formatacao dos campos de edicao de tempo
-configTimeLabel.grid(row=3, column=0)
-configTimeEntry.grid(row=4, column=0)
-clearTimeButton.grid(row=4, column=1, pady=10, padx=10)
+configTimeLabel.grid(sticky=W, row=3, column=0, columnspan=4)
+clearTimeButton.grid(row=3, column=3, pady=10, padx=10, columnspan=4)
+configTimeEntry.grid(sticky=W, row=4, column=0, columnspan=4)
 
 ###formatacao do botao de salvar
-saveInputButton.grid(row=5, column=0, pady=10, columnspan=1, padx=5)
+saveInputButton.grid(row=5, column=0, pady=10, padx=5, columnspan=4)
+runDeleteInputButton.grid(row=6, column=0, pady=10, padx=5,columnspan=4)
+runCopyInputButton.grid(row=7, column=0, pady=10, padx=5,columnspan=4)
+
 
 frame.pack()
 
