@@ -17,12 +17,12 @@ configFile = r'config.ini'
 config.read(configFile)
 
 
-
 #Modificacao das configuracoes
 ##getters dos valores de input para as variaveis de mudanca
 config_path = str(config.get('Default','config_path'))
 config_path_copy = str(config.get('Default','config_path_copy'))
 config_time = int(config.get('Default','config_time'))
+selfDir = os.path.dirname(__file__)
 
 ##alterar idade maxima dos arquivos
 timeDelete = datetime.now() - timedelta(days = config_time)
@@ -53,6 +53,7 @@ def deletarArquivos():
         listarArquivos()
         shutil.rmtree(config_path, ignore_errors=True)
         print('Arquivos deletados com sucesso')
+        os.chdir(os.path.join(os.getcwd(), selfDir))
     else:
         print("Diretório de destino não acessível. Favor verificar se o caminho existe e está disponível para Leitura/Escrita")
 
@@ -63,6 +64,7 @@ def copiarArquivos():
         listarArquivos(config_path_copy)
         shutil.copytree(config_path_copy, config_path, dirs_exist_ok=True)
         print('Arquivos copiados com sucesso')
+        os.chdir(os.path.join(os.getcwd(), selfDir))
     elif os.path.exists(config_path) == False and os.path.exists(config_path_copy) == True:
         print("Diretório de destino não acessível. Favor verificar se o caminho existe e está disponível para Leitura/Escrita")
     elif os.path.exists(config_path_copy) == False:

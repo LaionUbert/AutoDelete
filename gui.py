@@ -5,7 +5,7 @@
 
 
 import configparser, os
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, END
 from pathlib import Path
 
 
@@ -48,33 +48,33 @@ def saveValue():
     elif timeInput == 0: # Se for 0, irá retornar mensagem de erro
         print("Idade não pode ser igual ou menor que 0")
     else: # Se falso, irá retornar mensagem de erro
-        print("Tipo de dado incorreto. Favor usar apenas números inteiros positivos") 
+        print("Tipo de dado incorreto. Favor usar apenas números inteiros positivos")
         
     # gravar valores das variaveis no arquivo configFile
     with open (configFile, 'w') as configfile:
-        config.write(configfile)  
+        config.write(configfile)
 
 
 ## limpar valor da variavel 'config_path_copy'
 def clearCopyValue():
-    configCopyEntry.delete(0)
+    configCopyEntry.delete(0, END)
     config.set('Default', 'config_path_copy', 'Null')
     with open (configFile, 'w') as configfile:
-        config.write(configfile)  
+        config.write(configfile)
 
 ## limpar valor da variavel 'config_path'
 def clearPathValue(): # Limpar valor do campo 'config_path'
-    config.set('Default', 'config_path','Null')
-    configPathEntry.delete(0)
+    config.set('Default', 'config_path', 'Null')
+    configPathEntry.delete(0, END)
     with open (configFile, 'w') as configfile:
-        config.write(configfile)  
+        config.write(configfile)
 
 ## limpar valor da variavel 'config_time'
 def clearTimeValue():  # Limpar valor do campo 'config_time'
-    config.set('Default', 'config_time','0')
-    configTimeEntry.delete(0)
+    config.set('Default', 'config_time', '0')
+    configTimeEntry.delete(0, END)
     with open (configFile, 'w') as configfile:
-        config.write(configfile)  
+        config.write(configfile)
 
 # Alterar opcoes de execucao
 ## habilitar/desabilitar copia
@@ -137,7 +137,6 @@ window.geometry("450x400")
 window.configure(bg = "#FFFFFF")
 window.title("AutoFile Setup")
 window.iconbitmap(r'app\assets\frame0\Logo.ico')
-
 
 canvas = Canvas(
     window,
