@@ -101,12 +101,12 @@ def desabilitarDeletar():
 
 # Acessar diretorios
 ## acessar diretorio de copia
-def openCopy():    
-    return 0
+def openCopy():
+    os.startfile(config.get('Default','config_path_copy'))
 
 ## acessar diretorio gerenciado
 def openPath():
-    return 0
+    os.startfile(config.get('Default','config_path'))
 
 
 # Execucao Manual
