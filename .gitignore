@@ -7,3 +7,4 @@ dist
 __pycache__
 test.py
 testgui
+setup-outdated-.py

@@ -2,11 +2,11 @@
 
 ## Descrição
 
-Este repositório contém um script em Python que automatiza a exclusão de arquivos em um determinado diretório após um número específico de dias a fim de gerenciar o espaço de armazenamento removendo automaticamente arquivos antigos que não são mais necessários.
+Este repositório contém um script em Python que automatiza a exclusão e cópia de arquivos em um determinado diretório após um número específico de dias a fim de gerenciar o espaço de armazenamento removendo automaticamente arquivos antigos que não são mais necessários.
 
 ## Funcionalidades
 
-- **Configuração Personalizável:** Permite definir o número de dias após os quais os arquivos serão excluídos.
+- **Configuração Personalizável:** Permite definir o número de dias após os quais os arquivos serão excluídos ou copiados, tanto quanto os diretórios que serão gerenciados.
 - **Execução Automática:** Pode ser agendado para rodar periodicamente usando o Task Scheduler do Windows.
 - **Registro em Log:** Gera registros dos arquivos excluídos para auditoria e verificação.
 

@@ -13,7 +13,9 @@ from datetime import datetime, timedelta
 
 #Inicializacao do configparser
 config = configparser.ConfigParser()
-config.read("config.ini")
+configFile = r'config.ini'
+config.read(configFile)
+
 
 
 #Modificacao das configuracoes
@@ -70,7 +72,7 @@ def copiarArquivos():
 #listarArquivos()
 #Execucao das funcoes com base na diferenca de tempo
 if datetime.now() > timeDelete:
-    if config.getboolean('Tweaks','deletarArquivosOption') == True:
+    if config.getboolean('Tweaks','option_deletar_arquivos') == 1:
         deletarArquivos()
-if config.getboolean('Tweaks','copiarArquivosOption') == True:
+if config.getboolean('Tweaks','option_copiar_arquivos') == 1:
     copiarArquivos()
