@@ -1,2 +1,10 @@
-buildtest
+misc
+.idea
+venv
+build
+dist
+*.spec
 __pycache__
+test.py
+testgui
+setup-outdated-.py
